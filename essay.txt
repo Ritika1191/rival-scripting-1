@@ -1,91 +1,1529 @@
-Retrieval-Augmented Generation: A Comprehensive Analysis of Modern AI Systems
+Types and Values
+Scripting Language is dynamically typed. This means that variables do not have types; only values do. There are no type definitions in the language. All values carry their own type.
 
-Introduction
+ 
 
-Retrieval-Augmented Generation (RAG) represents a paradigm shift in artificial intelligence, combining the power of large language models with external knowledge retrieval to create more accurate, factual, and contextually relevant responses. This hybrid approach addresses one of the fundamental limitations of traditional language models: their static knowledge cutoff and inability to access real-time or domain-specific information. RAG systems have emerged as a critical solution for applications requiring up-to-date information, factual accuracy, and domain expertise.
+All values are first-class values. This means that all values can be stored in variables, passed as arguments to other functions, and returned as results.
 
-The fundamental architecture of RAG consists of two primary components: a retrieval system that searches through external knowledge sources and a generation system that produces responses based on both the retrieved information and the model's pre-trained knowledge. This dual approach enables RAG systems to provide more reliable, verifiable, and contextually appropriate responses compared to standalone language models.
+There are 5 basic types: null, Boolean, number, string, and table. The type null has one single value, null, whose main property is to be different from any other value; it often represents the absence of a useful value. The type Boolean has two values, false and true. false make a condition false while null will make a condition true; Any other value also makes a condition true.
 
-Historical Context and Development
+ 
 
-The concept of combining retrieval with generation in natural language processing has evolved significantly over the past decade. Early approaches focused on simple document retrieval followed by template-based response generation. However, the advent of transformer-based language models and advances in information retrieval techniques have enabled more sophisticated integration between these components.
+The name of a variable can be composed of letters, digits, and the underscore character. It must begin with either a letter or an underscore. Upper and lowercase letters are distinct because scripting language is case sensitive.
 
-The term "Retrieval-Augmented Generation" was popularized by Lewis et al. in their 2020 paper, which introduced a framework for combining dense retrieval with sequence-to-sequence generation. This work demonstrated that RAG systems could outperform traditional language models on knowledge-intensive tasks while maintaining fluency and coherence in generated text.
+ 
 
-Since then, RAG has become increasingly prevalent in commercial applications, with major technology companies implementing RAG-based systems for customer service, content generation, and information retrieval. The approach has proven particularly valuable in domains where accuracy and timeliness are critical, such as healthcare, finance, and legal services.
+By default, all variables are global
 
-Architecture and Components
+ 
 
-RAG systems typically employ a three-stage pipeline: indexing, retrieval, and generation. The indexing stage involves processing and storing external knowledge sources in a format optimized for efficient retrieval. This often includes creating dense vector representations of documents using encoder models, which enable semantic similarity searches.
+Defining variables of any type is as simple as expressions below:
 
-The retrieval stage identifies the most relevant documents or passages from the knowledge base given a user query. This can be accomplished through various methods, including sparse retrieval (e.g., BM25), dense retrieval using neural encoders, or hybrid approaches that combine multiple retrieval strategies. The retrieved documents are then ranked and filtered to select the most relevant information for the generation stage.
+ 
 
-The generation stage combines the retrieved information with the user's query to produce a coherent and accurate response. This typically involves a large language model that has been fine-tuned to incorporate external knowledge effectively. The model must learn to balance information from the retrieved documents with its pre-trained knowledge, ensuring that the final response is both factual and contextually appropriate.
+name = ‘Jon Doe’
+age = 35
+ownsHouse = true
+name, age = 'Lucy Doe', 34
+ 
 
-Key Advantages and Benefits
+Local variables can be declared anywhere inside a block. The declaration can include an initialization:
 
-RAG systems offer several significant advantages over traditional language models. First and foremost, they address the knowledge cutoff problem by enabling access to current information. This is particularly important for applications requiring up-to-date data, such as news analysis, financial reporting, or technical documentation.
+ 
 
-Second, RAG systems improve factual accuracy by grounding responses in verifiable sources. This reduces the likelihood of hallucination, a common problem with large language models where they generate plausible but incorrect information. By retrieving relevant documents, RAG systems can provide citations and evidence for their responses, increasing transparency and trustworthiness.
+local name = ‘Lui’
+ 
 
-Third, RAG enables domain-specific customization without requiring extensive retraining. Organizations can simply update their knowledge base with relevant documents, allowing the system to provide specialized information without modifying the underlying language model. This makes RAG particularly valuable for enterprise applications where domain expertise is critical.
+ 
 
-Fourth, RAG systems can handle long-form content more effectively than traditional language models, which often have context length limitations. By retrieving relevant passages, RAG can process and synthesize information from documents that exceed the model's maximum input length.
+Arrays​
+Arrays are an ordered arrangement of objects, which may be a one-dimensional array containing a collection of rows or a multi-dimensional array containing multiple rows and columns.
 
-Applications and Use Cases
+ 
 
-RAG systems have found widespread application across numerous domains. In customer service, RAG-powered chatbots can access product documentation, FAQs, and knowledge bases to provide accurate and helpful responses to customer inquiries. This reduces the need for human intervention while improving customer satisfaction through more relevant and accurate information.
+In Rival Scripting language, arrays are implemented using indexing tables with integers.
 
-In healthcare, RAG systems can assist medical professionals by retrieving relevant research papers, clinical guidelines, and patient records. This enables more informed decision-making while ensuring that recommendations are based on current medical knowledge and best practices.
+Indexing starts from 1 for arrays defined with in Script.
 
-In legal services, RAG can help lawyers and legal professionals by retrieving relevant case law, statutes, and legal precedents. This accelerates legal research and ensures that legal advice is grounded in current and applicable legal frameworks.
+Indexing starts from 0 for resultant arrays returned of any of the available library array functions.
 
-In education, RAG systems can provide personalized tutoring by retrieving relevant educational materials and adapting explanations to individual student needs. This enables more effective learning experiences while ensuring that information is accurate and up-to-date.
+ 
 
-In content creation, RAG can assist writers and journalists by retrieving relevant background information, statistics, and source materials. This improves the quality and accuracy of generated content while reducing research time.
+The size of an array is not fixed, and it can grow based on our requirements, subject to memory constraints.
 
-Technical Challenges and Limitations
+ 
 
-Despite their advantages, RAG systems face several technical challenges that must be addressed for optimal performance. One of the primary challenges is retrieval quality, which directly impacts the accuracy of generated responses. Poor retrieval can lead to irrelevant information being incorporated into responses, reducing overall quality.
+Single/One Dimensional
+​
 
-Retrieval quality depends on several factors, including the quality of the knowledge base, the effectiveness of the retrieval model, and the relevance ranking algorithms. Ensuring comprehensive coverage of the target domain while maintaining high-quality, up-to-date information requires significant ongoing effort and resources.
+A one-dimensional array can be represented using a simple table structure and can be initialized and read using a simple for loop. An example is shown below:
 
-Another challenge is the integration between retrieval and generation components. The retrieved information must be effectively incorporated into the generation process without disrupting the fluency and coherence of the response. This requires careful tuning of the generation model and potentially specialized training approaches.
+arrayOfAnimals = {"Cow", "Goat"}
+secondArray = {}
+for i = 0, 2 do
+ secondArray[i] = arrayOfAnimals[i]
+end
+for i= 0, 2 do
+ log(secondArray[i]) 
+end
+When we run the above code, we wil get the following output.
 
-Context length limitations remain a challenge, particularly when dealing with long documents or multiple retrieved passages. While RAG can help address this by retrieving relevant portions of documents, there are still practical limits on how much retrieved information can be effectively incorporated into a single response.
+ 
 
-Privacy and security concerns also arise when RAG systems access external knowledge sources. Organizations must ensure that sensitive information is properly protected and that access controls are implemented to prevent unauthorized retrieval of confidential data.
+null, Cow, Goat -- There is nothing at index 0 while we are trying to log/print it as arrayOfAnimals evetually gets translated to a table {1: "Cow", 2: "Goat"} 
+ 
 
-Evaluation and Metrics
+To avoid these nulls in a script like above, it is advised as a best practice to explicitly define the index if you are defining and initializing arrays in the script. Here is how the above script will look like with explicity indices
 
-Evaluating RAG systems requires a comprehensive approach that considers both retrieval and generation quality. Traditional metrics for information retrieval, such as precision, recall, and mean reciprocal rank, are important for assessing the quality of the retrieval component.
+ 
 
-For the generation component, metrics such as BLEU, ROUGE, and BERTScore can be used to evaluate fluency and coherence. However, these metrics may not fully capture the factual accuracy and relevance of RAG-generated responses.
+arrayOfAnimals = {[0]= "Cow", "Goat"}
+secondArray = {}
+for p = 0, 1 do
+ secondArray[p] = arrayOfAnimals[p]
+end
+for q= 0, 1 do
+ log(secondArray[q]) -- Prints Cow, Goat
+end
+log(secondArray) -- Prints {0: "Cow", 1: "Goat"}
+ 
 
-Human evaluation remains crucial for assessing the overall quality of RAG systems. This typically involves human annotators evaluating responses for accuracy, relevance, fluency, and helpfulness. Human evaluation can identify issues that automated metrics may miss, such as subtle factual errors or inappropriate tone.
+Multi Dimensional​
+Multi-dimensional arrays can be implemented in two ways.
 
-Recent research has also introduced specialized metrics for RAG evaluation, such as faithfulness (measuring how well the response reflects the retrieved information) and answerability (measuring whether the retrieved information is sufficient to answer the query).
+Array of arrays
 
-Future Directions and Research Opportunities
+Single dimensional array by manipulating indices
 
-The field of RAG continues to evolve rapidly, with several promising research directions emerging. One area of active research is improving retrieval quality through more sophisticated retrieval models and ranking algorithms. This includes exploring multi-modal retrieval, which can incorporate images, audio, and other media types alongside text.
+ 
 
-Another promising direction is the development of more efficient RAG architectures that can handle larger knowledge bases and provide faster response times. This includes research into approximate retrieval methods, caching strategies, and distributed retrieval systems.
+Example (Array of arrays):​
+-- Initializing the array
+array = {}
+for i=0,3 do
+ array[i] = {}
+ for j=0,3 do
+ array[i][j] = i*j
+ end
+end
+-- Accessing the array
+for i=0,3 do
+ for j=0,3 do
+ log(array[i][j])
+ end
+end
+Example (Manipulating Indices):​
+-- Initializing the array
+array = {}
+maxRows = 3
+maxColumns = 3
+for row=1,maxRows do
+ for col=1,maxColumns do
+ log[row*maxColumns +col] = row*col
+ end
+end
+-- Accessing the array
+for row=1,maxRows do
+ for col=1,maxColumns do
+ log(array[row*maxColumns +col])
+ end
+end
+As you can see in the above example, data is stored based on indices. It is possible to place the elements in a sparse way and it is the way implementation of a matrix works in Rival Scripting language.
 
-Personalization and adaptation represent another important research area. Future RAG systems may be able to learn user preferences and adapt their retrieval and generation strategies accordingly. This could enable more personalized and contextually appropriate responses.
+ 
 
-Integration with other AI technologies, such as reasoning systems and knowledge graphs, could further enhance RAG capabilities. This could enable more sophisticated reasoning about retrieved information and better integration of structured and unstructured knowledge.
+Operators​
+An operator is a symbol that tells the interpreter to perform specific mathematical or logical manipulations. Rival Scripting language provides the following type of operators −
 
-Ethical considerations and responsible AI development will also be crucial for the future of RAG. This includes addressing issues of bias in retrieval and generation, ensuring transparency in information sources, and developing methods for detecting and mitigating misinformation.
+Arithmetic Operators
 
-Conclusion
+Relational Operators
 
-Retrieval-Augmented Generation represents a significant advancement in artificial intelligence, offering a practical solution to many of the limitations of traditional language models. By combining the power of large language models with external knowledge retrieval, RAG systems can provide more accurate, factual, and contextually relevant responses.
+Logical Operators
 
-The widespread adoption of RAG across various domains demonstrates its practical value and potential for impact. However, realizing the full potential of RAG requires addressing technical challenges, developing appropriate evaluation methods, and ensuring responsible deployment.
+Misc Operators
 
-As the field continues to evolve, RAG systems are likely to become increasingly sophisticated and capable. Future developments in retrieval quality, generation integration, and system efficiency will enable new applications and use cases that are currently beyond reach.
+This tutorial will explain the arithmetic, relational, logical, and other miscellaneous operators one by one.
 
-The success of RAG also highlights the importance of hybrid approaches in artificial intelligence, where combining multiple techniques can achieve better results than any single approach alone. This lesson is likely to influence the development of other AI systems and applications in the years to come.
+ 
 
-Ultimately, RAG represents not just a technical innovation but a fundamental shift in how we think about AI systems and their relationship with knowledge. By enabling AI to access and utilize external information effectively, RAG opens new possibilities for creating more intelligent, useful, and trustworthy AI applications that can better serve human needs and goals. 
+Arithmetic Operators​
+The following table shows all the arithmetic operators supported by Rival Scripting language. Assume variable A holds 10 and variable B holds 20 then −
+
+ 
+
+
+​Relational Operators
+​
+
+The following table shows all the relational operators supported by Rival Scripting language. Assume variable A holds 10 and variable B holds 20 then −
+
+ 
+
+Operator
+
+Description
+
+Example
+
+==
+
+Checks if the value of two operands are equal or not, if yes then condition becomes true.
+
+(A == B) is not true.
+
+~=
+
+Checks if the value of two operands are equal or not, if values are not equal then condition becomes true.
+
+(A ~= B) is true.
+
+>
+
+Checks if the value of left operand is greater than the value of right operand, if yes then condition becomes true.
+
+(A > B) is not true.
+
+<
+
+Checks if the value of left operand is less than the value of right operand, if yes then condition becomes true.
+
+(A < B) is true.
+
+>=
+
+Checks if the value of left operand is greater than or equal to the value of right operand, if yes then condition becomes true.
+
+(A >= B) is not true.
+
+<=
+
+Checks if the value of left operand is less than or equal to the value of right operand, if yes then condition becomes true.
+
+(A <= B) is true.
+
+ 
+ 
+
+Logical Operators​
+Following table shows all the logical operators supported by Rival Scripting language. Assume variable A holds true and variable B holds false then −
+
+ 
+
+Operator
+
+Description
+
+Example
+
+and
+
+Called Logical AND operator. If both the operands are non-zero then condition becomes true, but the result would be last operand.
+
+(A and B) is B if both are truthy
+​(A and B) is 0 or false depending on if the falsy value is 0 or false.
+So, it's advisable to use double not operator to make sure that a Boolean is returned and to avoid any confusions e.g. not (not (A and B))
+
+or
+
+Called Logical OR Operator. If any of the two operands is non-zero then the condition becomes true. Return would be first operand
+
+(A or B) is true if A is true or both are true
+​(A or B) is A if both A and B are truthy and A is not Boolean
+So it's advisable to use double not operator to make sure that a Boolean is returned and to avoid any confusions e.g. not (not (A or B))
+
+not
+
+Called Logical NOT Operator. Use to reverse the logical state of its operand. If a condition is true then Logical NOT operator will make false.
+
+(A and B) is true.
+
+ 
+Misc Operators​
+Miscellaneous operators supported by Rival Scripting Language include concatenation and length.
+
+
+​
+
+Operator
+
+Description
+
+Example
+
+..
+
+Concatenates two strings.
+
+a..b where a is "Hello " and b is "World", will return "Hello World".
+
+#
+
+An unary operator that return the length of a string or a table.
+
+#"Hello" will return 5
+
+ 
+Operators Precedence​
+Operator precedence determines the grouping of terms in an expression. This affects how an expression is evaluated. Certain operators have higher precedence than others; for example, the multiplication operator has higher precedence than the addition operator −
+
+ 
+
+For example, x = 7 + 3 * 2; Here x is assigned 13, not 20 because operator * has higher precedence than + so it first get multiplied with 3*2 and then adds into 7.
+
+ 
+
+Here, operators with the highest precedence appear at the top of the table, those with the lowest appear at the bottom. Within an expression, higher precedence operators will be evaluated first.
+
+ 
+
+Category
+
+Operator
+
+Associativity
+
+Unary
+
+not - #
+
+Right to left ⬅️
+
+Concatenation
+
+..
+
+➡️ Left to right
+
+Multiplicative
+
+* / %
+
+➡️ Left to right
+
+Additive
+
++ -
+
+➡️ Left to right
+
+Relational
+
+< > <= >= == ~=
+
+➡️ Left to right
+
+Equality
+
+== ~=
+
+➡️ Left to right
+
+Logical AND
+
+and
+
+➡️ Left to right
+
+Logical OR
+
+or
+
+➡️ Left to right
+
+ 
+
+Statements​
+If Statement​
+Syntax​
+if (boolean_expression) then
+ --[ statement(s) will execute if the boolean expression is true --]
+end
+ 
+
+Example​
+a = 10;
+--[ check the boolean condition using if statement --]
+if (a < 20) then
+ --[ if condition is true then print the following --]
+ log("a is less than 20");
+end
+log("value of a is :", a);
+ 
+
+If…else Statement​
+Syntax​
+if (boolean_expression) then
+ --[ statement(s) will execute if the boolean expression is true --]
+else
+ --[ statement(s) will execute if the boolean expression is false --]
+end
+ 
+
+Example​
+a = 100;
+--[ check the boolean condition --]
+if (a < 20) then
+ --[ if condition is true then print the following --]
+ log("a is less than 20" )
+else
+ --[ if condition is false then print the following --]
+ log("a is not less than 20" )
+end
+log("value of a is :", a)
+ 
+
+Iterators​
+While Loop​
+Syntax​
+while(condition)
+do
+   statement(s)
+end
+ 
+
+Example​
+i = 21
+while (i < 30) 
+do 
+ i = i+1
+end
+
+For Loop​
+Syntax​
+for init,max/min value, increment
+do
+ statement(s)
+end
+init: Required, the number from which the loop will start
+
+max/min: Required, the number up to which the loop will keep running
+
+increment: Optional (Default = 1), any positive or negative number
+
+ 
+
+Example 1​
+for i = 10,1,-1 
+do 
+ log(i)
+end
+ 
+
+Example 2​
+j = 0
+for i=1,10, 5
+do
+ log("i:", i) -- prints 6
+ j=i
+end
+log("i:", i) -- prints null as i is inaccessible outside loop's scope
+log("j:", j) -- prints 6
+ 
+
+Comments​
+Single line comments: --
+
+Multi line comments: --[[ ]]--
+
+-- I am single line comment
+--[[ this is a multi-line comment.
+ The compiler
+ will not run code
+ written in between. ]]--
+
+Mathematical/Numeric functions​
+absolute(input, precision)​
+Computes input number to absolute
+
+ 
+
+Argument
+
+Required
+
+Description
+
+input
+
+✔️
+
+A Number value input
+
+precision
+
+✖️
+
+A Number value precision. Default = 0
+
+ 
+Returns
+
+An absolute number
+
+ 
+ceil(input, precision)​
+Computes input number rounded up to precision
+
+Argument
+
+Required
+
+Description
+
+input
+
+✔️
+
+A Number value input
+
+precision
+
+✖️
+
+A Number value precision. Default = 0
+
+ 
+Returns
+
+The rounded up number
+
+ 
+Example​
+ceil(1.2) -- returns 2
+ceil(-3.14) -- returns -3
+ceil(1.5222, 2) -- returns 1.53
+floor(input, precision)​
+Computes input number rounded down to precision
+
+Argument
+
+Required
+
+Description
+
+input
+
+✔️
+
+A Number value input
+
+precision
+
+✖️
+
+A Number value precision. Default = 0
+
+ 
+Returns
+
+The rounded down number
+
+ 
+Example​
+floor(1.2) -- returns 1
+floor(-3.14) -- returns -4
+floor(1.5222, 2) -- returns 1.52
+exp(input)​
+Computes 𝑒 to the power of input number
+
+Argument
+
+Required
+
+Description
+
+input
+
+✔️
+
+A Number value input
+
+ 
+Returns
+
+𝑒 raised to the power of input number.
+
+ 
+Example​
+exp(1) -- returns 2.718281828459045
+exp(2) -- returns 7.38905609893065
+exp(-1) -- returns 0.36787944117144233
+exp(0) -- returns 1
+max(listOfNumbers)​
+Computes the largest value
+
+Argument
+
+Required
+
+Description
+
+listOfNumbers
+
+✔️
+
+A table/array of numbers
+
+ 
+Returns
+
+Returns the largest value number.
+
+ 
+Example​
+max({4, 2, 8, 6, 7}) -- returns 8
+max({0.5, 0.1, 9, 6.5, 0.7}) -- returns 9
+max({1, 1, 1, 1, 1,0}) -- returns 1
+max({1}) -- returns 1
+min(listOfNumbers)​
+Computes the smallest value
+
+Argument
+
+Required
+
+Description
+
+listOfNumbers
+
+✔️
+
+A table/array of numbers
+
+ 
+Returns
+
+The smallest value number.
+
+ 
+Example​
+min({4, 2, 8, 6, 7}) -- returns 2
+min({0.5, 0.1, 9, 6.5, 0.7}) -- returns 0.1
+min({1, 1, 1, 1, 1,0}) -- returns 0
+min({1}) -- returns 1
+pow(base, power)​
+The value of a base raised to a power.
+
+Argument
+
+Required
+
+Description
+
+base
+
+✔️
+
+A Number value base
+
+power
+
+✔️
+
+A Number value power
+
+ 
+Returns
+
+The value of base number raised to the power number.
+
+ 
+Example​
+pow(7, 3) -- returns 343
+pow(4, 0.5) -- returns 2
+pow(7, -2) -- returns 0.020408163265306124
+convertToString(number)​
+Converts a valid number, string, object or an array to a string representation.
+
+Argument
+
+Required
+
+Description
+
+number
+
+✔️
+
+A Numeric or Text value
+
+ 
+Returns
+
+The string representation of a numeric, string, object or an array
+
+ 
+Example​
+convertToString("TeSt") -- returns "TeSt"
+convertToString(1234567891) -- returns "1234567891"
+convertToString({key: "value"}) -- returns '{"key": "value"}
+convertToString([1, "Rhino"]) -- returns '[1, "Rhino"]'
+convertToString(null) -- returns 'null'
+convertToString(undefined) -- returns 'null'
+String functions​
+toUpper(string)​
+Transforms the string to uppercase
+
+Argument
+
+Required
+
+Description
+
+string
+
+✔️
+
+A Text value
+
+ 
+Returns
+
+The transformed string.
+
+ 
+Example​
+toUpper("hello world") -- returns HELLO WORLD
+toUpper("hello-world") -- returns HELLO-WORLD
+toLower(string)​
+Transforms the string to lowercase
+
+Argument
+
+Required
+
+Description
+
+string
+
+✔️
+
+A Text value
+
+ 
+Returns
+
+The transformed string.
+
+ 
+Example​
+toLower("Hello World") -- returns hello world
+toLower("HELLO-WORLD") -- returns hello-world
+substring(string, lowerBound, length)​
+Extracts a sub-string starting at the specified index (based 1), with a given length
+
+Argument
+
+Required
+
+Description
+
+string
+
+✔️
+
+A Text value
+
+lowerBound
+
+✔️
+
+A Number value
+
+length
+
+✖️
+
+A Number value
+
+ 
+Returns
+
+The sub-string.
+
+ 
+Example​
+substring(abcde, 2, 3) -- returns bcd
+substring(abcde, 2) -- returns bcde
+substring(abcde, 3, 10) -- returns cde
+substring(abcde, 5) -- returns e
+ 
+
+replace(string, search_value, replacement_value)​
+Replaces occurrences of a specified substring within a given string with another substring.
+
+Argument
+
+Required
+
+Description
+
+string
+
+✔️
+
+A Text value
+
+search_value
+
+✔️
+
+A Text value
+
+replacement_value
+
+✔️
+
+A Text value
+
+ 
+Returns
+
+The transformed string.
+
+ 
+Example​
+replace("abcde", "c", "2") -- returns ab2de
+replace("hello world", " ", "" ) -- returns helloworld
+replace("hello world", "world", "there") -- returns hello there
+ trim(string)​
+Removes spaces from the beginning and end of a given string.
+
+Argument
+
+Required
+
+Description
+
+string
+
+✔️
+
+A Text value
+
+ 
+Returns
+
+The transformed string.
+
+ 
+Example​
+trim(" hello world ") -- returns hello world
+trim(" hello world") -- returns hello world
+ 
+
+isMatch(string, regexp)​
+Extracts a sub-string starting at the specified index (based 1), with a given length
+
+Argument
+
+Required
+
+Description
+
+string
+
+✔️
+
+A Text value
+
+regexp
+
+✔️
+
+A Text regular express pattern
+
+ 
+Returns
+
+The Boolean value of the match operation.
+
+ 
+Example​
+isMatch("rival@rival.com", "\\w+@[a-zA-Z_]+\\.[a-zA-Z]{2,3}$") -- returns true
+isMatch("rival@", "\\w+@[a-zA-Z_]+\\.[a-zA-Z]{2,3}$") -- returns false
+convertToNumber(string)​
+Converts a valid string representation of a number or valid number to a number.
+
+Argument
+
+Required
+
+Description
+
+string
+
+✔️
+
+A Text or Numeric value
+
+ 
+Returns
+
+The numeric representation of a string or numeric value
+
+ 
+Example​
+convertToNumber(3) -- returns 3
+convertToNumber("5") -- returns 5
+convertToNumber("123,456") -- For EU numeric string returns 123.456
+convertToNumber("3bac") -- For alphanumeric string returns null
+convertToNumber("1,234.56") -- For formatted string returns null
+convertToNumber({key: "value"}) -- For object returns null
+convertToNumber([{someKey: 'someValue'}, 'someOtherContent']) -- For array returns null
+convertToNumber(null) -- For null returns null
+convertToNumber(undefined) -- For undefined returns null
+Date Functions​
+getCurrentDateTime()​
+Get the current date time in UTC format and in the UTC time zone
+
+Argument
+
+Required
+
+Description
+
+ 
+
+ 
+
+ 
+
+ 
+Returns
+
+The current date time
+
+ 
+Example​
+getCurrentDateTime() -- returns: 2024-01-16T22:57:09.948Z
+getDateTimeDifference(date1, date2, unitOfTime)​
+Extracts a sub-string starting at the specified index (based 1), with a given length
+
+Argument
+
+Required
+
+Description
+
+date1
+
+✔️
+
+A Text UTC formatted
+
+date2
+
+✔️
+
+A Text UTC formatted
+
+unitOfTime
+
+✖️
+
+One of the following values: "years", "quarters", "months", "weeks", "days", "hours", "minutes", "seconds" and "milliseconds" (default)
+
+ 
+Returns
+
+The difference between two date times
+
+ 
+Example​
+currentDT = getCurrentDateTime()
+engagementStartTime = getEngagementStartDate()
+getDateTimeDifference(currentDT, engagementStartTime)
+formatDate(date, format)​
+Formats the date in the specific pattern
+
+Argument
+
+Required
+
+Description
+
+date
+
+✔️
+
+A Text UTC formatted
+
+format
+
+✖️
+
+A Text valid format pattern string. The complete list of options for formatting can be found here. If no format string is provided, it returns the default ISO8601 formatted date time
+
+ 
+Returns
+
+The formatted date in the specific pattern
+
+ 
+Example​
+jan1st2024Noon = '2024-01-01T12:00:00.000Z'
+formatDate(jan1st2024Noon, "MMMM d'st' yyyy, h:mm:ss a") -- returns: January 1st 2024, 12:00:00 PM
+formatDate(jan1st2024Noon, "ccc") -- returns: Monday
+formatDate(jan1st2024Noon, "MMM d'st' yy") -- returns: Jan 1st 24
+formatDate(jan1st2024Noon, "yyyy-MM-dd") -- returns: 2024-01-01
+formatDate(jan1st2024Noon, "h:mm:ss a") -- returns: 12:00:00 PM
+formatDate(jan1st2024Noon, "h:mm a") -- returns: 12:00 PM
+formatDate(jan1st2024Noon, "MMMM d'st' yyyy") -- returns: January 1st 2024
+formatDate(jan1st2024Noon, "yyyy 'escaped' yyyy") -- returns: 2024 escaped 2024
+formatDate(jan1st2024Noon) -- returns: 2024-01-01T12:00:00.000Z
+Arrays/Tables​
+concat(array1, array2)​
+Creates and return a single array by combining the two arrays passed as params. Order and items remain the same (no de-dupe).
+
+Argument
+
+Required
+
+Description
+
+array1
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+array2
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+ 
+Returns
+
+The combined array/table
+
+ 
+Example​
+list1 = {'moo', 'cow', false, 1, 1.0}
+list2 = {'duck', 'quack', true, 1, 1.0, 5}
+concat(list1, list2) -- returns {'moo', 'cow', false, 1, 1.0, 'duck', 'quack', true, 1, 1.0, 5}
+includesAll(array1, array2)​
+Check if all items of array2 is present in array1
+
+Argument
+
+Required
+
+Description
+
+array1
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+array2
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+ 
+Returns
+
+A Boolean true if all the data of array2 is present in array1, returns false otherwise.
+
+ 
+Example​
+includesAll({"moo", "cow"}, {"moo", "cow"}) -- returns true
+includesAll({"moo", "cow"}, {"cow"}) -- returns true
+includesAll({"moo", "cow"}, {"cow", "horse"}) -- returns false
+hasAllAndNoOther(array1, array2)​
+Check if all of the data of the array1 and no other data is present in array2
+
+Argument
+
+Required
+
+Description
+
+array1
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+array2
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+ 
+Returns
+
+A Boolean true if all of the data of the array1 and no other data is present in array2, returns false otherwise.
+
+ 
+Example​
+numList = {1, 2}
+hasAllAndNoOther(numList, {1}) -- returns false
+hasAllAndNoOther(numList, {1, 2}) -- returns true
+hasAllAndNoOther(numList, {2, 1}) -- returns true
+hasAllAndNoOther(numList, {2, 1, 3}) -- returns false
+hasAllAndNoOther(numList, {4}) -- returns false
+hasAndNoOther(array1, array2)​
+Check if at least one of the data of the array1 and no other data is present in array2
+
+Argument
+
+Required
+
+Description
+
+array1
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+array2
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+ 
+Returns
+
+A Boolean true if at least one of the data of the array1 and no other data is present in array2, returns false otherwise.
+
+ 
+Example​
+numList = {1, 2}
+hasAndNoOther(numList, {1}) -- returns false
+hasAndNoOther(numList, {1, 2}) -- returns true
+hasAndNoOther(numList, {2, 1}) -- returns true
+hasAndNoOther(numList, {2, 1, 3}) -- returns true
+hasAndNoOther(numList, {4}) -- returns false
+includesAny(array1, array2)​
+Check if any (one or more) of the data of array2 are present in array1.
+
+Argument
+
+Required
+
+Description
+
+array1
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+array2
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+ 
+Returns
+
+A Boolean true if any (one or more) of the data of array2 are present in array1, returns false otherwise.
+
+ 
+Example​
+numList = {1, 2}
+includesAny(numList, {1}) -- returns true
+includesAny(numList, {1, 2}) -- returns true
+includesAny(numList, {2, 1}) -- returns true
+includesAny(numList, {2, 1, 3}) -- returns true
+includesAny(numList, {4}) -- returns false
+hasNone(array1, array2)​
+Check if none of the data elements of array2 are present in array1.
+
+Argument
+
+Required
+
+Description
+
+array1
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+array2
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+ 
+Returns
+
+A Boolean true if none of the data elements of array2 are present in array1, returns false otherwise.
+
+ 
+Example​
+numList = {1, 2}
+hasNone(numList, {1}) -- returns false
+hasNone(numList, {1, 2}) -- returns false
+hasNone(numList, {2, 1}) -- returns false
+hasNone(numList, {2, 1, 3}) -- returns false
+hasNone(numList, {4}) -- returns true
+hasNone(numList, {5, 7}) -- returns true
+insertAt(array1, array2, position)​
+Add a set of data (array2) with duplicates at a specific position in array1.
+
+Argument
+
+Required
+
+Description
+
+array1
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+array2
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+position
+
+✔️
+
+A Number index value
+
+ 
+Returns
+
+The modified array1 with added items of array2 at the specified position.
+
+ 
+Example​
+insertAt({1,2,3,4,5}, {1}, 2) -- returns {1, 2, 1, 3, 4, 5}
+insertAt({1,2,3,4,5}, {9, 11}, 0) -- returns {9, 11, 1,2,3,4,5}
+insertAt({1,2,3,4,5}, {9, 11}, -1) -- returns {1,2,3,4,5,9,11}
+insertAt({1,2,3,4,5}, {9, 11}, 89) -- returns {1,2,3,4,5,9,11}
+union(array1, array2)​
+Concats an array/table of common elements with de duplication
+
+Argument
+
+Required
+
+Description
+
+array1
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+array2
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+ 
+Returns
+
+Returns an array/table concatenated with de duplication.
+
+ 
+Example​
+list1 = {'moo', 'cow', false, 1, 1.0}
+list2 = {'duck', 'quack', true, 1, 1.0, 5}
+union(list1, list2) -- returns {'moo', 'cow', false, 1, 1.0, 'duck', 'quack', true, 5}
+ 
+
+intersection(array1, array2)​
+Returns an array or table of elements that are present in both array1 and array2, with duplicates removed. Useful for filtering shared values across lists or dataset tables.
+
+Argument
+
+Required
+
+Description
+
+array1
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+array2
+
+✔️
+
+Another array of numbers, strings, Booleans or tables
+
+ 
+Returns
+
+Returns an array or table consisting of only the elements common to both input arrays/tables. The result is de-duplicated (i.e. each element appears only once).
+
+ 
+Example​
+list1 = {'moo', 'cow', false, 1, 1.0}
+list2 = {'duck', 'quack', true, 1, 1.0, 5}
+intersection(list1, list2)
+-- returns {1, 1.0}
+ 
+
+remove(array, …elements)​
+Remove all elements from array that matches the data in array
+
+Argument
+
+Required
+
+Description
+
+array
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+...elements
+
+✔️
+
+one or more of numbers, strings, or Booleans
+
+ 
+Returns
+
+The array without the removed elements.
+
+ 
+Example​
+remove({1.0, "cow", 3, "horse", 5.0, "duck", 7, "dog", 9.1, "lamb"},
+1.0, 2, 3, 4, 5.0, 6, 7, 8, 9.1) -- returns {"cow", "horse", "duck, "dog", "lamb"}
+remove({1.0, "cow", 3, "horse"}, 1.0, "cow", 3, "horse") -- returns {}
+removeAt(array, index)​
+Removes the data at the specific index
+
+Argument
+
+Required
+
+Description
+
+array
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+index
+
+✔️
+
+A Number index value
+
+ 
+Returns
+
+The array without the element at the specified index
+
+ 
+Example​
+removeAt({1, 2, 3, 4, 5}, 2) -- returns {1, 3, 4, 5}
+removeAt({1, 2, 3, 4, 5}, -1) -- returns {1, 2, 3, 4}
+removeAt({1, 2, 3, 4, 5}, 4) -- returns {1, 2, 3, 4}
+removeAt({1, 2, 3, 4, 5}, 7) -- returns {1, 2, 3, 4}
+shuffle(array)​
+Shuffles the elements of an array/table
+
+Argument
+
+Required
+
+Description
+
+array
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+ 
+Returns
+
+The shuffled array. No dedupe
+
+ 
+Example​
+shuffle({1, 2, 3, 4, 5}) -- returns an array of similar size and with same elements, but in a different order always
+sort(array)​
+Sorts an array of number or strings
+
+Argument
+
+Required
+
+Description
+
+array
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+ 
+Returns
+
+The sorted array
+
+ 
+Example​
+sort({"Mercury", "Venus", "Earth", "Mars", "Jupiter"}) -- returns {"Earth", "Jupiter", "Mars", "Mercury", "Venus"}
+subtraction(array1, array2)​
+Subtracts elements of one array from another
+
+Argument
+
+Required
+
+Description
+
+array1
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+array2
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+ 
+Returns
+
+An array with any common values between array1 and array2 removed from array1
+
+ 
+Example​
+subtraction({1, 2}, {1, 2, 3}) -- returns {}
+subtraction({1, 2}, {1}) -- returns {2}
+subtraction({1, 2, 3, 4, 5}, {7, 8, 9}) -- returns {1, 2, 3, 4, 5}
+rand(array, size)​
+Randomize the elements of an array
+
+Argument
+
+Required
+
+Description
+
+array
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+size
+
+✖️
+
+Default is 1, if size is greater than the array size, all the elements would be returned in a random order
+
+ 
+Returns
+
+Returns the randomized array of a given size.
+
+ 
+Example​
+inputNumbers = {4,2,8,6,7}
+inputStrings = {'red', 'blue', 'yellow', 'green', 'orange'}
+rand(inputNumbers) -- returns a table consisting of one of the inputNumbers values
+rand(inputNumbers, 3) -- returns a table consisting of 3 of the inputNumbers values
+rand(inputStrings, 3) -- returns a table consisting of 3 of the inputStrings values
+rand(inputString, 11) -- returns a table consisting of all of the inputStrings values, but the order is random
+size(array)​
+Computes length of an array
+
+Argument
+
+Required
+
+Description
+
+array
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+ 
+Returns
+
+Returns size Number of the specified array.
+
+ 
+Example​
+local allQuestions = getAllDatapoints()
+size(allQuestions) -- If you have say 15 questions in your chat, it will return 15
+size(allQuestions[2].Choices) -- Say, if the third question in this list is a Single Choice
+-- or Multi Choice Question, and it has 5 choices, it will return 5
+local mammals = {"Cow", "Sheep", "Horse", "Dolphin", "Giraffe"}
+size(mammals) -- Returns 5
+size(Single_Choice_1.Choices)
+size(Multiple_Choice_1.Choices)
+size(Multiple_Choice_1.Value)
+size(Multiple_Choice_Profile_Attribute.Value)
+size(Single_Choice_1.Choices)
+size(Multiple_Choice_1.Choices)
+size(Multiple_Choice_1.Value)
+size(Multiple_Choice_Profile_Attribute.Value)
+indexOf(array, element)​
+Finds the index of an element in the array
+
+Argument
+
+Required
+
+Description
+
+array
+
+✔️
+
+An array of numbers, strings, Booleans or tables
+
+element
+
+✔️
+
+An element value for which index needs to be found
+
+ 
+Returns
+
+Returns the first index at which a given element can be found in the array, or -1 if it is not present
+
+Ignores any additional parameters
+
+Returns -1 if the first param is not an array
+
+ 
+Example​
+local mammals = {"Cow", "Sheep", "Horse", "Dolphin", "Giraffe"}
+indexOf(mammals, "Giraffe") -- Returns 5 as default arrays start with 1
+indexOf(mammals, "Monkey") -- Returns -1 as monkey is not present
+local customMammals = {[0]="Cow", "Sheep", "Horse", "Dolphin", "Giraffe"}
+indexOf(customMammals, "Giraffe") -- Returns 4 as array is now explicitly set to start with 0
+indexOf(mammals, "Giraffe", 1) -- Returns 5 as default arrays start with 1 and ignores the param 1
+indexOf('not an array', "Giraffe") -- Return -1 as the first param is not an array
