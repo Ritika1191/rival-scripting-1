@@ -12,7 +12,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #2563eb;
+    color: #ff6b35;
 }
 
 .chat-container {
@@ -20,16 +20,26 @@ body {
     max-width: 800px;
     height: 90vh;
     background-color: white;
-    border: 2px solid #2563eb;
+    border: 2px solid #ff6b35;
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .chat-header {
     padding: 20px;
-    background-color: #2563eb;
+    background-color: black;
     color: white;
-    border-bottom: 2px solid #2563eb;
+    border-bottom: 2px solid #ff6b35;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.chat-header img {
+    height: 40px;
+    width: auto;
 }
 
 .chat-header h1 {
@@ -51,33 +61,48 @@ body {
     padding: 10px 15px;
     max-width: 80%;
     word-wrap: break-word;
-    border: 1px solid #2563eb;
+    border: 1px solid #ff6b35;
+    border-radius: 8px;
 }
 
 .message.user {
-    background-color: #2563eb;
+    background-color: #ff6b35;
     color: white;
     margin-left: auto;
 }
 
 .message.bot {
     background-color: white;
-    color: #2563eb;
+    color: #ff6b35;
     margin-right: auto;
-    border: 1px solid #2563eb;
+    border: 1px solid #ff6b35;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.message.bot .bot-logo {
+    height: 20px;
+    width: auto;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.message.bot .bot-text {
+    flex: 1;
 }
 
 .message.system {
     background-color: white;
-    color: #2563eb;
+    color: #ff6b35;
     font-size: 0.9em;
-    border: 1px dashed #2563eb;
+    border: 1px dashed #ff6b35;
     margin: 10px auto;
     max-width: 90%;
 }
 
 .message.error {
-    background-color: #2563eb;
+    background-color: #ff6b35;
     color: white;
     margin: 10px auto;
     max-width: 90%;
@@ -85,7 +110,7 @@ body {
 
 .chat-input {
     padding: 20px;
-    border-top: 2px solid #2563eb;
+    border-top: 2px solid #ff6b35;
     background-color: white;
 }
 
@@ -97,7 +122,8 @@ body {
 #user-input {
     flex: 1;
     padding: 10px;
-    border: 1px solid #2563eb;
+    border: 1px solid #ff6b35;
+    border-radius: 6px;
     font-family: "Times New Roman", Times, serif;
     font-size: 1rem;
     background-color: white;
@@ -105,9 +131,10 @@ body {
 
 button {
     padding: 10px 20px;
-    background-color: #2563eb;
+    background-color: #ff6b35;
     color: white;
-    border: 1px solid #2563eb;
+    border: 1px solid #ff6b35;
+    border-radius: 6px;
     cursor: pointer;
     font-family: "Times New Roman", Times, serif;
     font-size: 1rem;
@@ -117,11 +144,11 @@ button {
 
 button:hover {
     background-color: white;
-    color: #2563eb;
+    color: #ff6b35;
 }
 
 button:disabled {
-    background-color: #93c5fd;
+    background-color: #ffb399;
     color: white;
     cursor: not-allowed;
 }
@@ -133,14 +160,14 @@ button:disabled {
 
 ::-webkit-scrollbar-track {
     background: white;
-    border: 1px solid #2563eb;
+    border: 1px solid #ff6b35;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #2563eb;
-    border: 1px solid #2563eb;
+    background: #ff6b35;
+    border: 1px solid #ff6b35;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #1d4ed8;
-} 
+    background: #e55a30;
+}
