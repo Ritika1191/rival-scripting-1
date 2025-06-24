@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMPLE RAG CHATBOT</title>
+    <title>RIVAL SCRIPTING SUPPORT</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="chat-container">
         <div class="chat-header">
-            <h1>SAMPLE RAG CHATBOT</h1>
+            <img src="https://wearebctech.com/wp-content/uploads/2023/04/Rival-logo-high-res-png.png" alt="Rival Logo">
+            <h1>RIVAL SCRIPTING SUPPORT</h1>
         </div>
         <div class="chat-messages" id="chat-messages">
             <div class="message bot">
-                Welcome to the RAG Chatbot. I am ready to answer your questions about the text I've been trained on.
+                <img src="https://wearebctech.com/wp-content/uploads/2023/04/Rival-logo-high-res-png.png" alt="Rival" class="bot-logo">
+                <div class="bot-text">Welcome to the RAG Chatbot. I am ready to answer your questions about the text I've been trained on.</div>
             </div>
         </div>
         <div class="chat-input">
@@ -23,7 +25,6 @@
             </form>
         </div>
     </div>
-
     <script>
         document.getElementById('chat-form').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -77,15 +78,34 @@
                 submitButton.disabled = false;
             }
         });
-
+        
         function addMessage(text, type) {
             const messagesDiv = document.getElementById('chat-messages');
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${type}`;
-            messageDiv.textContent = text;
+            
+            if (type === 'bot') {
+                // Create logo element
+                const logoImg = document.createElement('img');
+                logoImg.src = 'https://wearebctech.com/wp-content/uploads/2023/04/Rival-logo-high-res-png.png';
+                logoImg.alt = 'Rival';
+                logoImg.className = 'bot-logo';
+                
+                // Create text element
+                const textDiv = document.createElement('div');
+                textDiv.className = 'bot-text';
+                textDiv.textContent = text;
+                
+                // Append both to message
+                messageDiv.appendChild(logoImg);
+                messageDiv.appendChild(textDiv);
+            } else {
+                messageDiv.textContent = text;
+            }
+            
             messagesDiv.appendChild(messageDiv);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         }
     </script>
 </body>
-</html> 
+</html>
